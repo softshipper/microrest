@@ -1,0 +1,53 @@
+{
+  "name": "foo-service",
+  "port": 80,
+  "description": "Easy mocking",
+  "routes": [
+    {
+      "uri": "/greet",
+      "methods": [
+        {
+          "verb": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json",
+              "if-Match": "bfc13a64729c4290ef5b2c2730249c88ca92d82d"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "text": "Hello from foo service"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "uri": "/greet",
+      "methods": [
+        {
+          "verb": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json",
+              "if-Match": "bfc13a64729c4290ef5b2c2730249c88ca92d82d"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "text": "Hello from foo service"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
