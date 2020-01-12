@@ -8,40 +8,60 @@ import (
 	"testing"
 )
 
-
 func TestSimpleRequest(t *testing.T) {
 
 	req, err := http.NewRequest("GET", "/greet", strings.NewReader(""))
-	assert.NotNil(t, err)
-	req.Header.Add("accept", "application/json")
+	assert.Nil(t, err)
+	req.Header.Add("accept", "text/html")
 
 	route := []descriptor.Route{
-
 		{
-			Uri:     "/greet",
+			Uri: "/greet",
 			Methods: []descriptor.Method{
 				{
-					Verb:     "GET",
-					Request:  descriptor.Request{
-						Headers: nil,
-
+					Verb: "GET",
+					Request: descriptor.Request{
+						Headers: descriptor.Headers{
+							"accept": "text/html",
+						},
 					},
-					Response: descriptor.Response{},
 				},
 			},
 		},
-
 	}
 
-	assert.Nil(req, )
+  err = VerifyRequest(req, &route)
+
+	assert.Nil(t, err)
 
 }
 
 func TestPostRequestWithBody(t *testing.T) {
 
+	body1 := `key1=value1&key2=value2`
+	route1 := []descriptor.Route{
+		{
+			Uri: "/greet",
+			Methods: []descriptor.Method{
+				{
+					Verb: "GET",
+					Request: descriptor.Request{
+						Headers: descriptor.Headers{
+							"accept": "text/html",
+						},
+						Body: "",
+					},
+
+				},
+			},
+		},
+	}
 	req1, err1 := http.NewRequest("POST", "/greet", strings.NewReader(``))
 	req1.Header.Add("content-type", "application/x-www-form-urlencoded")
 	assert.Nil(t, err1)
+
+	
+
 
 	req2, err2 := http.NewRequest("POST", "/greet", strings.NewReader(``))
 	req2.Header.Add("content-type", "multipart/form-data")
@@ -77,6 +97,6 @@ func TestPutRequest(t *testing.T) {
 
 func TestDeleteRequest(t *testing.T) {
 
-	req, err := http.NewRequest("DELETE", "/delete/1", strings.NewReader(``))
-  assert.Nil(err)
+	_, err := http.NewRequest("DELETE", "/delete/1", strings.NewReader(``))
+	assert.Nil(t, err)
 }

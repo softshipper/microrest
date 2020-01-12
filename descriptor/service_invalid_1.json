@@ -1,0 +1,40 @@
+{
+  "_comment": "Invalid name",
+  "name": "foo service",
+  "port": 80,
+  "description": "invalid service",
+  "routes": [
+    {
+      "_comment": "Wrong URI",
+      "uri": "users",
+      "methods": [
+        {
+          "_comment": "Method is not valid",
+          "method": "MMM",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "body": [
+              {
+                "surename": "foo",
+                "firstname": "boo"
+              },
+              {
+                "surename": "zoo",
+                "firstname": "zoo"
+              },
+              {
+                "surename": "moo",
+                "firstname": "moo"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

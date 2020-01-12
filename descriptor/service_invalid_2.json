@@ -1,0 +1,29 @@
+{
+  "name": "foo_service",
+  "port": 80,
+  "description": "invalid service",
+  "routes": [
+    {
+      "uri": "/user",
+      "methods": [
+        {
+          "method": "POST",
+          "request": {
+            "headers": {
+              "accept": "application/json",
+              "content-type": "application/json"
+            },
+            "_comment": "Request body is missing",
+            "body": {}
+          },
+          "response": {
+            "code": 201,
+            "headers": {},
+            "_comment": "URI to new created resource is missing.",
+            "body": {}
+          }
+        }
+      ]
+    }
+  ]
+}

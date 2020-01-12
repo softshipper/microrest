@@ -76,16 +76,30 @@ var codes = []int{
 	http.StatusNetworkAuthenticationRequired,
 }
 
-func ValidateUri(uri string) error {
+func ValidateDescription(s *Service) error {
+	return nil
+}
+
+func checkServiceName(name string) error {
+
+}
+
+//Check if uri exists twice
+func checkUriDuplicate(uri string, s *Service) error {
+
+}
+
+
+func validateUri(uri string) error {
 	_, err := url.ParseRequestURI(uri)
 	return err
 }
 
-func ValidateHttpVerb(verb string) error {
+func validateMethod(verb string) error {
 
 	switch verb {
 	//At the moment it supports only 4 verbs
-	case "GET", "POST", "PUT", "DELETE":
+	case http.MethodGet, http.MethodPost, http.MethodPut, http.MethodDelete, http.MethodPatch:
 		return nil
 	}
 
@@ -94,7 +108,7 @@ func ValidateHttpVerb(verb string) error {
 
 }
 
-func ValidateHttpCode(code int) error {
+func validateCode(code int) error {
 
 	for _, element := range codes {
 

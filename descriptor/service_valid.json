@@ -1,0 +1,117 @@
+{
+  "name": "foo-service",
+  "port": 80,
+  "description": "valid service",
+  "routes": [
+    {
+      "uri": "/users",
+      "methods": [
+        {
+          "method": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "content-Type": "application/json"
+            },
+            "body": [
+              {
+                "surename": "foo",
+                "firstname": "foo"
+              },
+              {
+                "surename": "boo",
+                "firstname": "boo"
+              },
+              {
+                "surename": "zoo",
+                "firstname": "zoo"
+              },
+              {
+                "surename": "moo",
+                "firstname": "moo"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "uri": "/user",
+      "methods": [
+        {
+          "method": "POST",
+          "request": {
+            "headers": {
+              "accept": "application/json",
+              "content-type": "application/json"
+            },
+            "body": {
+              "surename": "foo",
+              "firstname": "foo"
+            }
+          },
+          "response": {
+            "code": 201,
+            "body": "/user/foo"
+          }
+        }
+      ]
+    },
+    {
+      "uri": "/user/:id",
+      "methods": [
+        {
+          "method": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "content-Type": "application/json"
+            },
+            "body": {
+              "surename": "foo",
+              "firstname": "foo"
+            }
+          }
+        },
+        {
+          "method": "PUT",
+          "request": {
+            "headers": {
+              "content-type": "application/json"
+            },
+            "body": {
+              "surename": "boo",
+              "firstname": "boo"
+            }
+          },
+          "response": {
+            "code": 204
+          }
+        },
+        {
+          "method": "DELETE",
+          "request": {
+            "accept": "application/json"
+          },
+          "response": {
+            "code": 200,
+            "body": {
+              "surename": "foo",
+              "firstname": "foo"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

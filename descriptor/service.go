@@ -13,7 +13,7 @@ type Route struct {
 }
 
 type Method struct {
-	Verb     string
+	Method     string
 	Request  Request
 	Response Response
 }

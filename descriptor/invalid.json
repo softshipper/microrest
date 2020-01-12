@@ -1,0 +1,100 @@
+{
+  "name": "foo-service",
+  "port": 80,
+  "description": "invalid service",
+  "routes": [
+    {
+      "_comment": "Wrong URI",
+      "uri": "users",
+      "methods": [
+        {
+          "method": "MMM",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "body": [
+              {
+                "surename": "foo",
+                "firstname": "boo"
+              },
+              {
+                "surename": "zoo",
+                "firstname": "zoo"
+              },
+              {
+                "surename": "moo",
+                "firstname": "moo"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "uri": "/user",
+      "methods": [
+        {
+          "method": "POST",
+          "request": {
+            "headers": {
+              "accept": "application/json",
+              "content-type": "application/json"
+            },
+            "_comment": "Body is missing",
+            "body": {}
+          },
+          "response": {
+            "code": 201,
+            "headers": {},
+            "body": {}
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "URI parametr is missing",
+      "uri": "/user/notavar",
+      "methods": [
+        {
+          "method": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "content-Type": "application/json"
+            },
+            "body": {
+              "surename": "foo",
+              "firstname": "foo"
+            }
+          }
+        },
+        {
+          "method": "PUT",
+          "request": {
+            "headers": {
+              "content-type": "application/json"
+            },
+            "body": {
+              "surename": "boo",
+              "firstname": "boo"
+            }
+          },
+          "_comment": "Response code is missing",
+          "response": {
+          }
+        },
+        {
+          "method": "DELETE",
+          "request": {
+            "accept": "application/json"
+            ]
+          }

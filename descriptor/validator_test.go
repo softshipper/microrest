@@ -2,42 +2,78 @@ package descriptor
 
 import (
 	"github.com/stretchr/testify/assert"
-	"net/http"
+	"io/ioutil"
+	"strings"
 	"testing"
 )
 
 /*
  * Test if the JSON description correspond to HTTP norm
  */
-func TestPath(t *testing.T) {
+
+
+func TestInvalidDescription1(t *testing.T) {
+
 	assert := assert.New(t)
 
-	uri := "/hello"
-
-	err := ValidateUri(uri)
+	file, err := ioutil.ReadFile("./service_invalid_1.json")
 	assert.Nil(err)
 
-}
+	service, err := ParseJson(file)
+	assert.Nil(err)
 
-func TestHttpVerb(t *testing.T) {
-	assert := assert.New(t)
+	msg := ValidateDescription(&service).Error()
 
-	valid := ValidateHttpVerb("GET")
-	assert.Nil(valid)
-
-	invalid := ValidateHttpVerb("TTT")
-	assert.NotNil(invalid)
-	assert.Equal("The given TTT method is not supported!", invalid.Error())
+	assert.True(strings.Contains("✖ Invalid service name", msg))
+	assert.True(strings.Contains("✖ Invalid uri format", msg))
+	assert.True(strings.Contains("✖ Method MMM is not valid", msg))
 
 }
 
-func TestHttpCode(t *testing.T) {
+
+func TestInvalidDescription2(t *testing.T) {
+
 	assert := assert.New(t)
 
-	valid := ValidateHttpCode(http.StatusAccepted)
-	assert.Nil(valid)
+	file, err := ioutil.ReadFile("./service_invalid_2.json")
+	assert.Nil(err)
 
-	invalid := ValidateHttpCode(3432)
-	assert.Error(invalid, "The http code 3432 does not exist!")
+	service, err := ParseJson(file)
+	assert.Nil(err)
 
+	msg := ValidateDescription(&service).Error()
+	assert.True(strings.Contains("✖ The request body is missing", msg))
+	assert.True(strings.Contains("✖ The URI to the new location is missing", msg))
+
+}
+
+
+func TestInvalidDescription3(t *testing.T) {
+
+
+	assert := assert.New(t)
+	file, err := ioutil.ReadFile("./service_invalid_3.json")
+	assert.Nil(err)
+
+	service, err := ParseJson(file)
+	assert.Nil(err)
+	msg := ValidateDescription(&service).Error()
+	assert.True(strings.Contains("✖ The response code is missing", msg))
+	assert.True(strings.Contains("✖ The response body does not contain deleted resource", msg))
+
+}
+
+
+func TestInvalidDescription4(t *testing.T) {
+
+	assert := assert.New(t)
+
+	file, err := ioutil.ReadFile("./service_invalid_4.json")
+	assert.Nil(err)
+
+	service, err := ParseJson(file)
+	assert.Nil(err)
+	msg := ValidateDescription(&service).Error()
+
+	assert.True(strings.Contains("✖ The uri /users exists twice", msg))
 }

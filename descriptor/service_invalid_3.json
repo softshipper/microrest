@@ -1,0 +1,59 @@
+{
+  "name": "foo_service",
+  "port": 80,
+  "description": "invalid service",
+  "routes": [
+    {
+      "uri": "/user/34",
+      "methods": [
+        {
+          "method": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "content-Type": "application/json"
+            },
+            "body": {
+              "surename": "foo",
+              "firstname": "foo"
+            }
+          }
+        },
+        {
+          "method": "PUT",
+          "request": {
+            "headers": {
+              "content-type": "application/json"
+            },
+            "body": {
+              "surename": "boo",
+              "firstname": "boo"
+            }
+          },
+          "_comment": "Response code is missing",
+          "response": {
+          }
+        },
+        {
+          "method": "DELETE",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "_comment": "Content is missing because of the status 200",
+            "body": {
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

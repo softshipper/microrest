@@ -1,0 +1,81 @@
+{
+  "name": "foo service",
+  "port": 80,
+  "description": "invalid service",
+  "routes": [
+    {
+      "uri": "/users",
+      "methods": [
+        {
+          "method": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "content-Type": "application/json"
+            },
+            "body": [
+              {
+                "surename": "foo",
+                "firstname": "foo"
+              },
+              {
+                "surename": "boo",
+                "firstname": "boo"
+              },
+              {
+                "surename": "zoo",
+                "firstname": "zoo"
+              },
+              {
+                "surename": "moo",
+                "firstname": "moo"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "uri": "/users",
+      "methods": [
+        {
+          "method": "GET",
+          "request": {
+            "headers": {
+              "accept": "application/json"
+            }
+          },
+          "response": {
+            "code": 200,
+            "headers": {
+              "content-Type": "application/json"
+            },
+            "body": [
+              {
+                "surename": "foo",
+                "firstname": "foo"
+              },
+              {
+                "surename": "boo",
+                "firstname": "boo"
+              },
+              {
+                "surename": "zoo",
+                "firstname": "zoo"
+              },
+              {
+                "surename": "moo",
+                "firstname": "moo"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
